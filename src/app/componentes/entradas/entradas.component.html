@@ -1,0 +1,28 @@
+<div class="jumbotron">
+    <h2>Entradas</h2>
+    <hr>
+
+    <h3><u>Data Binding</u></h3>
+    <br>
+
+    <h4>Interpolación</h4>
+    <p>{{ mensaje }}</p>
+    <br>
+
+    <h4>Property Binding</h4>
+    <input type="text" value="123"><br>
+    <input type="text" value="valor1"><br>
+    <input type="text" value="{{valor1}}">{{valor1}}<br>
+    <input type="text" [value]="valor2">{{valor2}}<br> <!-- esto y lo de arriba son dos maneras de hacer el mismo property binding en una sola direccion -->
+
+    <h4>Event Binding</h4>
+    <button class="btn btn-warning mb-3" (click)="contador=contador+1">Contar {{contador}}</button>
+
+    <h4>Double Data Binding</h4>
+
+    <h5>MANUAL</h5>
+    <input type="text" [value]="valor3" (input)="modificar($event)"> {{valor3}} <br>
+
+    <h5>AUTOMATICO</h5>
+    <input type="text" [(ngModel)]="valor4"> {{valor4}} <br>
+</div>

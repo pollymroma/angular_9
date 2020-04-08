@@ -1,0 +1,33 @@
+<div class="jumbotron">
+    <h2>Atributos</h2>
+    <hr>
+
+    <h4><u>[ngStyle]</u></h4>
+    <br>
+    <button class="btn btn-warning mb-3" (click)="estado1=!estado1">Cambiar Fondo ({{estado1}})</button>
+    <p [ngStyle]="{'color': 'white', 'backgroundColor': estado1? 'blue' : 'red', 'padding': '10px', 'borderRadius': '10px'}">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sapiente ab quaerat, perferendis, reiciendis rem officiis, dolorem aliquam hic aliquid sequi odio nulla. Molestias ducimus quidem neque praesentium facilis expedita.
+    </p>
+
+    <h4><u>[ngClass]</u></h4>
+    <br>
+    <button class="btn btn-warning mb-3" (click)="estado2=!estado2">Cambiar Fondo ({{estado2}})</button>
+    <p [ngClass]="{'btn': true, 'btn-success': estado2, 'btn-danger': !estado2}">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sapiente ab quaerat, perferendis, reiciendis rem officiis, dolorem aliquam hic aliquid sequi odio nulla. Molestias ducimus quidem neque praesentium facilis expedita.
+    </p>
+    <hr>
+
+    <h4><u>[Directivas Personalizadas]</u></h4>
+    <br>
+    <p [appResaltar]="color" [colorBase]="'magenta'">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat tempore dolorum repudiandae voluptatem, deleniti, maxime delectus voluptas, aliquid rem quis inventore eius eum! Beatae velit obcaecati dignissimos totam pariatur necessitatibus!
+    </p>
+
+    <div>
+        <input type="radio" name="colors" (click)="color='blue'"> BLUE
+        <input type="radio" name="colors" (click)="color='brown'"> BROWN
+        <input type="radio" name="colors" (click)="color='crimson'"> CRIMSON
+        <input type="radio" name="colors" (click)="color=''" checked> NINGUNO
+    </div>
+
+</div>

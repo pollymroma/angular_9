@@ -1,0 +1,126 @@
+######### ANGULAR 8 #########
+
+Repo del profe: https://danielsanchez.com.ar/AccentureAngular/
+
+- descargo zip
+
+Framework de Frontend MVC: Modelo-Vista-Controlador
+
+Scafolding: estructura de carpetas.
+
+Usa TypeScript. Tipado estatico (opcional): de qué tipo es la variable.
+
+Los navegadores no lo soportan, no lo entienden, por eso un transpilador, traduce el código a un lenguaje base.
+
+NodeJS plataforma de trabajo. Backend en NodeJS. JavaScript en frontend.
+Angular puede trabajar con cualquier backend.
+Genera una aplicacion RESTful
+Desacoplado: frontend y backend. Se vinculan mediante servicios API rest.
+
+Instalamos NodeJS: descarga desde nodejs.org
+
+Para Angular 8 o 9 necesitamos node 12.16 actualizar.
+
+Herramientas:
+- NodeJS
+- Visual Studio Code
+- Algun terminal (opcion cmder, la mini)
+- Git
+- NPM
+- Angular CLI (ng --version) Instalamos la 9
+
+Creamos proyecto: ng new nombre:
+- Routing: no. Porque lo vamos a hacer despues a mano para verlo. Mas adelante no haria falta decir no.
+- Stylesheet: css
+
+Dentro del proyecto code . ejecuta el visual estudio abierto en ese proyecto
+
+ng serve -o abre el navegador
+
+###############################################################################
+
+app.module.ts: organizacion del proyecto, con cual arranca.
+Componente: vista (html y css), funcionalidad (codigo)
+app.component es el componente principal. Tiene su css y html (vista) su ts (codigo) y el spec.ts (testing)
+
+Decorador: un patron de diseño.
+
+AppComponent: la clase.
+El componente tiene la clase, que es el que se declara en el modulo.
+Bootstrap: con que componente se arranca.
+
+Scafolding: la estructura de carpetas.
+node_modules: dependencias del proyecto.
+src -> app: modulos, componentes
+app -> app.module.ts los componentes, imports, providers y bootstrap, con cual componente arranca
+src -> assets: archivos de recursos: imagenes, audio, video, documentos
+src -> environments: para el build y compilar
+src -> favicon: el iconito en la tab de la pagina
+src -> index.html el html de arranque, del proyecto, no tocarlo
+tiene el <app-root> la etiqueta que levanta el componene principal
+src -> style.css: estilos globales
+src -> test.ts tiene que ver con cosas de test
+src -> polyfills: tiene que ver con cosas de navegadores viejos?
+src -> main.ts tiene en memoria el proyecto, arrancando con el AppModule. Archivo de arranque.
+angular.json: estilos, rutas de las cosas. configura dependencias.
+tsconfig.json: opciones del transpilador
+
+Bootstrap 4: buscamos el css, importamos eso y no el js.
+Lo metemos en el index.html abajo del favicon.
+En el index.html no inyectamos mas componentes, solo queda el principal.
+Los demas se meten en el app.component.html
+
+Creamos componentes:
+ng generate component ruta
+ng g c ruta
+ng g c componentes/entradas
+
+alt + z wrap codigo largo
+shift + alt + a comentar codigo
+
+#ENTRADAS
+Data Binding:
+o Interpolacion
+    mensaje en entradas.component.ts, como una variable
+    En el html lo muestro con una {{}}
+o Property Binding
+    un atributo en un input de html
+    de la clase a la vista. la vista no cambia el valor del atributo si se modificara
+o Event Binding
+    la vista le quiere decir algo a la clase
+    por ejemplo conecto un boton con una accion que incrementa un contador
+o Double Data Binding
+    usando eventos: escribir un valor y que se actualice ahora si la propiedad
+    MANUAL: [value] y un evento que llama una funcion y recibe un $event
+    AUTOMATICO: usamos ngModel. junta el [value] y lo del evento con metodo todo en uno.
+    el [] hace lo del [value] los () hace que la propiedad que pongo ahi, se reemplace por lo que meta en el input.
+    importar el modulo de formularios en el app.module import { FormsModule } from '@angular/forms';
+    solo para actualizar la variable
+
+#ESTRUCTURA
+Directivas Estructurales:
+o *ngIf
+    algo se ve o no segun el valor de lo que evalue el ngIf. No lo oculta, lo saca del DOM
+    el *ngIf puede llevar un else, ;else y nombre, luego creo un ng-template con #nombre
+o *ngFor
+    como un for de programacion.
+    index as i, una variable interna index, la llamo i
+
+#ATRIBUTOS
+o [ngStyle] 
+    modifica aspecto de un elemento. aplica css con sintaxis de objeto.
+o [ngClass] 
+    sintaxis de objeto, lista las clases y si la aplica o no.
+o Directivas personalizadas
+    como un ngStyle o ngClass pero propio. Maneja la apariencia de un elemento.
+    ng g d directivas/resaltar
+    no tienen ni vista ni css. solo el selector, para interactuar los atributos
+    el app.module lo incorpora como componenete en ls declaraciones
+    ElementRef: referenciar al elemento donde incluyo la directiva
+    el selector de directiva, le puedo pasar un dato tambien
+    No me salio.
+
+#FORMULARIOS
+o Template Driven
+    El formulario trabaja con el name, ngModel relacionado con eso, bidireccionalmente.
+o Reactive Form

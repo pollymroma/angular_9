@@ -1,0 +1,16 @@
+.jumbotron {
+    background-color: green;
+    color: white;
+}
+
+hr {
+    background-color: #aaa;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+}
+
+pre {
+    color: white;
+}
