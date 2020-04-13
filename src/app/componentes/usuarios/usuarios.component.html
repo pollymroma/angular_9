@@ -1,0 +1,23 @@
+<div class="jumbotron">
+    <h2>Usuarios</h2>
+    <hr>
+
+    <button class="btn btn-success m-3" (click)="obtenerUsuarios()">GET</button>
+    <button class="btn btn-info m-3" (click)="enviarUsuario()">POST</button>
+
+
+    <div class="media alert alert-info" *ngFor="let usuario of usuarios; index as i"> <!-- para poder tomar el indice de la iteracion -->
+        <img [src]="usuario.foto" width="280" [ngStyle]="{'border-radius': '30px'}" alt="foto de {{usuario.nombre}}">
+        <div class="media-body ml-3">
+            <h4>indice: {{i+1}} - id: {{usuario.id}} - Creado: {{usuario.createdAt}}</h4>
+            <p>Nombre: <b>{{usuario.nombre}}</b></p>
+            <p>Descripcion: <i>{{usuario.descripcion}}</i></p>
+            <p>Coordenadas: <u>{{usuario.coordenadas}}</u></p>
+            <p>Comentarios: <b><i>{{usuario.comentarios}}</i></b></p>
+            <button class="btn btn-danger m-3" (click)="borrarUsuario(usuario.id)">Delete</button> <!-- el backend entiende el id, o el offset que es su lugar en el array, porque eso cambia -->
+            <button class="btn btn-warning m-3" (click)="actualizarUsuario(usuario.id)">PUT</button>
+        </div>
+
+    </div>
+
+</div>

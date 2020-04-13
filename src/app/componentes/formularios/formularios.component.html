@@ -4,7 +4,7 @@
 
     <h4><u>Template Driven</u></h4>
     <br>
-    <form action="" autocomplete="off">
+    <form autocomplete="off">
         <div class="form-group">
             <label for="nombre">Nombre</label>
             <input type="text" id="nombre" class="form-control" name="nombre" [(ngModel)]="formu.nombre">
@@ -33,4 +33,60 @@
 
     <h4><u>Reactive Form</u></h4>
     <br>
+
+    <form [formGroup]="f" autocomplete="off">
+        <div class="form-group">
+            <label for="nombre2">Nombre</label>
+            <input type="text" id="nombre2" class="form-control" formControlName="nombre">
+            <div *ngIf="f.controls.nombre.errors && f.controls.nombre.dirty" class="alert alert-danger mt-1">
+                <div *ngIf="f.controls.nombre.errors.required">Este campo es requerido</div>
+                <div *ngIf="f.controls.nombre.errors.minlength">
+                    La cantidad mínima de caracteres es {{f.controls.nombre.errors.minlength.requiredLength}}.
+                    {{f.controls.nombre.errors.minlength.actualLength == 1? 'Tipeado': 'Tipeados'}} {{f.controls.nombre.errors.minlength.actualLength}} 
+                    {{f.controls.nombre.errors.minlength.actualLength == 1? 'caracter': 'caracteres'}}
+                </div>
+                <div *ngIf="f.controls.nombre.errors.maxlength">
+                    La cantidad máxima de caracteres es {{f.controls.nombre.errors.maxlength.requiredLength}}.
+                    Tipeados {{f.controls.nombre.errors.maxlength.actualLength}} caracteres
+                </div>
+                <div *ngIf="f.controls.nombre.errors.conEspacios">
+                    No se permiten espacios intermedios en este campo
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="apellido2">Apellido</label>
+            <input type="text" id="apellido2" class="form-control" formControlName="apellido">
+        </div>
+        <div class="form-group">
+            <label for="edad2">Edad</label>
+            <input type="number" id="edad2" class="form-control" formControlName="edad">
+        </div>
+        <div formGroupName="contacto"> <!-- grupo dentro de un form, lleva clave de agrupacion -->
+            <div class="form-group">
+                <label for="email2">Email</label>
+                <input type="email" id="email2" class="form-control" formControlName="email">
+            </div>
+            <div class="form-group">
+                <label for="telefono">Telefono</label>
+                <input type="number" id="telefono" class="form-control" formControlName="telefono">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password2">Password</label>
+            <input type="password" id="password2" class="form-control" formControlName="password">
+        </div>
+
+        <button [disabled]="!f.valid" class="btn btn-success mt-3" (click)="enviar2()">Enviar</button>
+    </form>
+
+    <hr>
+    <p><u>Estado del campo nombre del formulario reactivo</u></p>
+    <pre>{{f.controls.nombre.errors | json}}</pre>
+
+    <hr>
+    <p><u>Datos del formulario reactivo</u></p>
+    <pre>{{f.value | json}}</pre> <!-- ese pipe es un filtro de vistas: convierte el valor en formato json y lo muestra -->
+    
+
 </div>

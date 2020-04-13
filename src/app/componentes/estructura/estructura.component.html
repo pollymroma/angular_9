@@ -27,6 +27,14 @@
     <h4><u>*ngFor</u></h4>
     <br>
 
+    <h4><u>Clientes (desde el servicio clientes)</u></h4>
+    <button (click)="borrarCliente()">Borrar Cliente</button>
+    <ul>
+        <li *ngFor="let cliente of clientes">
+            {{cliente}}
+        </li>
+    </ul>
+
     <button class="btn btn-warning mb-3" (click)="agregarAlumno()">Agregar Alumnos</button>
     <ul>
         <li *ngFor="let alumno of alumnos">

@@ -124,3 +124,53 @@ o Directivas personalizadas
 o Template Driven
     El formulario trabaja con el name, ngModel relacionado con eso, bidireccionalmente.
 o Reactive Form
+    Las funciones son pasivas. Hacen algo cuando las llamas con parametros.
+    Reactivo es una funcion activa y el que la consume es pasivo. O sea al revez. Metes cambios para que se activen los que la consumen.
+    Agrego en app.module los FormsModule y en los imports el REactiveFormsModule
+    No usa el ngModel. El name se llama FormControlName que provee este modulo nuevo. Es como ngModel + name.
+    Id, input, class queda igual.
+    El contenedor form hay que relacionar el formulario con un objeto a crear en la clase con los datos de entrada de este form.
+    Al constructor hay que pasarle (inyeccion de dependencias => importar una clase externa dentro de un objeto, lo meto en el constructor) le inyecto el form builder.
+    Relacionar el formulario de formBuilder con el formulario posta reactivo del html con el [formGroup]
+    Los datos estan dentro del objeto del form.value
+    Warning mismo id entre diferentes formularios.
+    VALIDAR: template driven uso required. no son muy seguras. El form reactivo  puede validar diferente y mejor, usamos el Validators.
+    ESTADOS:
+    form.valid: todo el formulario cumples validaciones de lo marcado => true, si alguno no cumple, es false.
+    form.dirty: algun campo se toco, se escribio algo. El contrario es pristine. Ambos boolean.
+    touched: toco un campo y lo abandono. tambien boolean. touched y untouched.
+    Validaciones personalizadas: yo valido en funcion de algo.
+
+#SERVICIOS
+    Son clases. Se inyectan en los constructores de las clases de los componentes (inyectar: importar una clase en el constructor de otra).
+    Esa clase hereda los funcionamientos de la clase importada. Desacoplamiento del objeto importado y el propio.
+    ng g s servicios/clientes
+    Tiene el decorador @Injectable
+    providedIn se autoproveen
+    Consumir servicios y sus datos desde cualquier componente. Brinda informacion comun a todos los componentes.
+      constructor(private clientesService: ClientesService) { } puede acceder a sus metodos y propiedades
+    Si no tuviera el providedIn no funciona. Proveer el servicio! Si no de esa forma, desde los providers del app.module:
+        providers: [ClienteService, ...]
+    providedIn, desde el app.module esta para todo el proyecto.
+    Si el comomponente tiene sus providers, meto el servicio y es solo para ese componente
+    (Interface: que el servicio implemente la interface, no el componente)
+    Configurar Servicios:
+    - El nombre del servicio coincide con el nombre de su clase.
+    Vamos a usar: https://www.mockapi.io/ como backend persistente.
+        Te loggeas. Genero proyecto. Tenes un endpoint donde van a esar mis arrays de objetos.
+        El recurso viene con los GET, POST, PUT y DELETE ya armados
+        Uso faker para crear datos. npm faker: https://www.npmjs.com/package/faker
+    Otro backend pero no persistente: jsonplaceholder.typicode.com
+    Creo componente y servicio Usuarios
+    Clase httpClient:
+    - get devuelve un observable: publicador de info, necesito subscriptores.
+    retorno el observable para usar en el usuarios component
+INTERFACE: de un servicio.
+En el mismo .service o un archivo aparte. Es un contrato de clase, su molde.
+En vez de httpClient tambien podemos usar fetch. Se puede usar cualquiera de los dos.
+
+
+
+PROMESAS Y OBSERVABLES
+ Promesa se rechaza o se cumple
+ Observable queda
