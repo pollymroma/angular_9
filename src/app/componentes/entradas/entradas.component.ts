@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-entradas',
@@ -13,8 +14,13 @@ export class EntradasComponent implements OnInit {
   valor3: number = 456
   valor4: number = 567
   contador: number = 0
+  id: string
 
-  constructor() { }
+  constructor(activatedRoute: ActivatedRoute) {
+    activatedRoute.params.subscribe(params => {
+      this.id = params['id'] //ese id viene de la ruta
+    }) //un observable
+   }
 
   ngOnInit(): void {
   }

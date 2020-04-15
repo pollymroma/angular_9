@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Routes, RouterModule } from '@angular/router'
 
 import { AppComponent } from './app.component';
 import { EntradasComponent } from './componentes/entradas/entradas.component';
@@ -11,7 +12,26 @@ import { ResaltarDirective } from './directivas/resaltar.directive';
 import { ClientesComponent } from './componentes/clientes/clientes.component';
 import { ClientesService, ClientesServiceUseClass, ClientesServiceUseExisting, functionClientesServiceUseFactory } from './servicios/clientes.service';
 import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './componentes/navbar/navbar.component'
+import { UsuariosService } from './servicios/usuarios.service';
+import { PanelComponent } from './mimodulo/componentes/panel/panel.component';
+import { MimoduloModule } from './mimodulo/mimodulo.module';
+
+const routes: Routes = [
+  {path: '', redirectTo: 'entradas', pathMatch: 'full'}, //si es barra redirige a esta. el match full es porque la barra esta en todas, todo empieza con barra
+  //{path: '', component: ClientesComponent} //cuando no hay barra algo, va a uno de esos
+  {path: 'entradas/:id', component: EntradasComponent}, //le paso parametros obligatorios y en la ruta del navbar tambien le tiene que llegar el parametro
+  //:id? para parametro opcional
+  {path: 'entradas', component: EntradasComponent},
+  {path: 'estructura', component: EstructuraComponent},
+  {path: 'atributos', component: AtributosComponent},
+  {path: 'formularios', component: FormulariosComponent},
+  {path: 'clientes', component: ClientesComponent},
+  {path: 'usuarios', component: UsuariosComponent},
+  {path: 'panel', component: PanelComponent}
+  //{path: 'familia', component: FamiliaComponent}
+]
 
 @NgModule({
   declarations: [
@@ -22,13 +42,20 @@ import { HttpClientModule } from '@angular/common/http'
     FormulariosComponent,
     ResaltarDirective,
     ClientesComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(
+      routes,
+      {enableTracing: true}
+    ),
+    MimoduloModule
+    //Mimodulo2Module
   ],
   providers: [
     //ClientesService

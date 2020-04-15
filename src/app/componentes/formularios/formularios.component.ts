@@ -45,7 +45,7 @@ export class FormulariosComponent implements OnInit {
 
   ngOnInit(): void {
     //GET CON FETCH
-    fetch('https://jsonplaceholder.typicode.com/posts')
+    fetch('https://5e94a124f591cb0016d8141e.mockapi.io/posts')
     .then(response => response.json())
     .then(rta => console.log(rta))
   }
@@ -64,7 +64,7 @@ export class FormulariosComponent implements OnInit {
   enviar2() {
     console.log(this.f.value)
     //POST CON FETCH
-    fetch('https://jsonplaceholder.typicode.com/posts', {
+    fetch('https://5e94a124f591cb0016d8141e.mockapi.io/posts', {
       method: 'post',
       body: JSON.stringify(this.f.value), //necesario porque espera un json
       headers: {

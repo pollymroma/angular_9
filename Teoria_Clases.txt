@@ -1,8 +1,8 @@
 ######### ANGULAR 8 #########
 
 Repo del profe: https://danielsanchez.com.ar/AccentureAngular/
+Mail: danielsanchez68@hotmail.com
 
-- descargo zip
 
 Framework de Frontend MVC: Modelo-Vista-Controlador
 
@@ -169,8 +169,95 @@ INTERFACE: de un servicio.
 En el mismo .service o un archivo aparte. Es un contrato de clase, su molde.
 En vez de httpClient tambien podemos usar fetch. Se puede usar cualquiera de los dos.
 
-
-
 PROMESAS Y OBSERVABLES
  Promesa se rechaza o se cumple
  Observable queda
+
+#ROUTER
+Un modulo que permite seleccionar componentes y ponerlos en algun lugar de la vista.
+Un selector de vistas: que quiero ver en un determinado lugar del navegador.
+Segun lo que selecciono en una barra de navegacion, que componente ver.
+o Armamos barra de navegacion. Armamos un componente para eso.
+Usamos bootstrap. https://getbootstrap.com/
+(sfhit + alt + f para alinear codigo)
+Ponemos la barra en el app.component. El menu hamburguesa necesita mas cosas de lo que importamos de bootstrap.
+Lo sacamos del index.html y lo metemos bien en otro lado.
+Instalamos en el proyecto: npm i bootstrap jquery popper.js
+En el angular.json: en el primer style y scripts: ruta de lo que instalamaos en node_modules y metemos bootstrap y jquery
+ruta a estilos
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css"
+            ],
+ruta a scripts
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
+scripts de jquery:
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
+(descargar las versiones: 3.4.1, 1.16.0, 4.4.1: npm remove jquery y npm install jquery@~3.4.1)
+
+En app.module importamos Routes y RouterModule y definimos las rutas. Un array de rutas. /algo en el navegador llega a mostrar ese componente.
+Importamos RouterModule en el imports y lo configuramos con rutas.
+forRoot: le pasas rutas y enableTracing para debug de errores en consola.
+Modificamos navbar: cambiamos el href. Router nos da routerLink="/nombre_en_rutas_del_app_module
+routerLinkActive para darle una clase de estilo.
+En el inicio routerLink="/"
+Sacamos los componentes del app.component y ponemos el router-outlet
+Cuando paso parametros en la ruta: tengo que pasarselo a la ruta en el html, lo tomo del componente, por ejemplo 
+entradas, en el constructor inyecto:
+  constructor(activatedRouter: ActivatedRoute)
+
+
+#MODULOS
+ng g m nombre_modulo
+Creamos un modulo, sera como el app.module pero uno propio.
+Para armar una libreria externa. La llevo a otro proyecto y la importo.
+Creo un componente en el modulo.
+Los componentes estan en ese modulo en sus declarations.
+Panel llama a contenido.
+Modulo con dos componentes uno contiene a otro.
+exports para hacer algo publico.
+Mostrar y rutear el modulo en lo que teniamos.
+
+Tengo otro modulo: lo pego en el proyecto
+Lo importo en app.module: en el imports. agrego las rutas
+El modulo 2 tiene FamiliaComponent exportado, lo demas no.
+Se arman los links.
+
+#COMUNICACION ENTRE COMPONENTES
+Familia -> Padre -> Hijo e Hija
+El modulo tiene: Familia, Padre, Hijo, Hija, Madre, Tio y Tia. Todos en declarations. Solo exporta Familia.
+Familia tiene a padre y madre en el html.
+o Padre en el html tiene a hijo e hija.
+    Una propiedad en un input que se escribe, se la pasa a una funcion. Hablar. Lo guarda en mensajeDelPadre.
+    Tambien tiene mensajeDelHijo y mensajeDelaHija.
+    Cuando llama al selector de hijo e hija, le pasa como atributo su propio mensaje, mensajeDelPadre. Se pasan como parametros, por eso van: [mensaje] entre []
+    Es property binding, nosotros generamos el atributo. mensaje no existe. De la clase a la vista.
+    El componente hijo tiene un @Input('mensaje') mensajeDePapa: string
+    @Input: declaro una propiead de esa clase (mensajeDePapa) y la carga con el valor de 'mensaje' que le llega.
+    Si no le cambio el nombre  y quiero que se llame mensaje, listo pongo solo @Input mensaje: string.
+    Con Hija pasa lo mismo.
+    La vista de hijo muestra el mensaje que le llega.
+    
+    El hijo ahora quiere sacar algo, pasar del hijo al padre. Salgo del componente: con un evento.
+    evento contestar. Guarda el mensaje que escriba y emite evento. Usamos @Output() contestar = new EventEmitter()
+    el mensaje que escriba, se emite desde ese Output.
+    (contestar)="escucharHijo($event)" => contestar el eventEmitter, $event tiene el mensaje del hijo
+
+    Madre: instancia hijo sin nada. 
+    @ViewChild(HijoComponent, {static: false}) jijo: HijoComponent
+    A que componente quiero entrar le digo.
+
+    TERMINAR ESTO CUANDO ESTE EL VIDEO PORQUE NO SE ENTENDIO.
+
+#DEPLOY A PROD
+ng build --prod --base-href /carpeta/
+ng build --prod --base-href /
+
+XAMPP: https://www.apachefriends.org/index.html
+En Apache meto el dist
+000webhostcom
