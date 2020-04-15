@@ -17,6 +17,8 @@ import { NavbarComponent } from './componentes/navbar/navbar.component'
 import { UsuariosService } from './servicios/usuarios.service';
 import { PanelComponent } from './mimodulo/componentes/panel/panel.component';
 import { MimoduloModule } from './mimodulo/mimodulo.module';
+import { MimoduloModule2 } from './mimodulo2/mimodulo2.module';
+import { FamiliaComponent } from './mimodulo2/componentes/familia/familia.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'entradas', pathMatch: 'full'}, //si es barra redirige a esta. el match full es porque la barra esta en todas, todo empieza con barra
@@ -29,8 +31,8 @@ const routes: Routes = [
   {path: 'formularios', component: FormulariosComponent},
   {path: 'clientes', component: ClientesComponent},
   {path: 'usuarios', component: UsuariosComponent},
-  {path: 'panel', component: PanelComponent}
-  //{path: 'familia', component: FamiliaComponent}
+  {path: 'panel', component: PanelComponent},
+  {path: 'familia', component: FamiliaComponent}
 ]
 
 @NgModule({
@@ -54,8 +56,8 @@ const routes: Routes = [
       routes,
       {enableTracing: true}
     ),
-    MimoduloModule
-    //Mimodulo2Module
+    MimoduloModule,
+    MimoduloModule2
   ],
   providers: [
     //ClientesService

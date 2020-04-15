@@ -1,0 +1,17 @@
+<div class="jumbotron">
+  <h2>
+    PADRE
+  </h2>
+
+  <input type="text" [(ngModel)]="mensajeAux">
+  <button (click)="hablar(mensajeAux)">Hablar</button>
+  <br>
+  <br>
+
+  <p>Mensaje del hijo : {{ mensajeDelHijo }}</p>
+  <p>Mensaje de la hija : {{ mensajeDelaHija }}</p>
+
+  <app-hijo [mensaje]="mensajeDelPadre" (contestar)="escucharHijo($event)"></app-hijo>
+  <app-hija [mensaje]="mensajeDelPadre" (contestar)="escucharHija($event)"></app-hija>
+
+</div>
