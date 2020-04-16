@@ -11,7 +11,7 @@ import { ContenidoComponent } from './componentes/contenido/contenido.component'
   imports: [
     CommonModule
   ],
-  exports: [ //lo exporteo para que sea publico y lo pueda usar otro, si no queda en delcarations
+  exports: [ //lo exporto para que sea publico y lo pueda usar otro, si no queda en delcarations
     PanelComponent
   ]
 })
