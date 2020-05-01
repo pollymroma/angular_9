@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { catchError } from 'rxjs/operators'
 import { throwError } from 'rxjs';
 
-export interface IUsuario {  
+export interface IUsuario {  //Usa esto para no crear un componente usuarios?
   nombre: string,
   foto: string,
   descripcion: string,
